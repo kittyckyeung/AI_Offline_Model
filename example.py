@@ -41,3 +41,4 @@ if __name__ == "__main__":
     print(f"Question: {question}\n")
     answer = quick_query(question)
     print(f"Answer: {answer}")
+
