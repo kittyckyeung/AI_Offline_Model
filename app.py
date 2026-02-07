@@ -24,8 +24,8 @@ def main():
     print()
     
     try:
-        # Using the recommended mistral model (default)
-        model = GPT4All("mistral-7b-openorca.gguf2.Q4_0.gguf")
+        # Using the recommended mistral model
+        model = GPT4All("mistral-7b-openorca.Q4_0.gguf")
         print("Model loaded successfully!")
         print()
     except Exception as e:

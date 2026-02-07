@@ -21,7 +21,7 @@ def quick_query(question):
     """
     print("Loading GPT4All model...")
     try:
-        model = GPT4All("mistral-7b-openorca.gguf2.Q4_0.gguf")
+        model = GPT4All("mistral-7b-openorca.Q4_0.gguf")
     except Exception:
         # Fallback to default model
         model = GPT4All()
