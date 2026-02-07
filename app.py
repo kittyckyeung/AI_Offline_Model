@@ -47,40 +47,30 @@ def main():
     print("Type your messages below. Type 'exit', 'quit', or press Ctrl+C to end.")
     print()
     
-    # Interactive chat loop
-    conversation_history = []
-    
+    # Interactive chat loop with persistent conversation context
     try:
-        while True:
-            # Get user input
-            user_input = input("You: ").strip()
-            
-            # Check for exit commands
-            if user_input.lower() in ['exit', 'quit', 'q']:
-                print("\nGoodbye!")
-                break
-            
-            # Skip empty inputs
-            if not user_input:
-                continue
-            
-            # Add user message to conversation history
-            conversation_history.append({"role": "user", "content": user_input})
-            
-            # Generate response
-            print("AI: ", end="", flush=True)
-            
-            with model.chat_session():
+        with model.chat_session():
+            while True:
+                # Get user input
+                user_input = input("You: ").strip()
+                
+                # Check for exit commands
+                if user_input.lower() in ['exit', 'quit', 'q']:
+                    print("\nGoodbye!")
+                    break
+                
+                # Skip empty inputs
+                if not user_input:
+                    continue
+                
+                # Generate response
+                print("AI: ", end="", flush=True)
+                
                 response = model.generate(user_input, max_tokens=200, streaming=True)
-                full_response = ""
                 for token in response:
                     print(token, end="", flush=True)
-                    full_response += token
                 print()  # New line after response
-            
-            # Add assistant response to conversation history
-            conversation_history.append({"role": "assistant", "content": full_response})
-            print()
+                print()
             
     except KeyboardInterrupt:
         print("\n\nGoodbye!")
