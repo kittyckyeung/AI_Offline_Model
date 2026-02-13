@@ -211,3 +211,4 @@ __marimo__/
 models/
 *.gguf
 *.bin
+AI_Offline_Model.code-workspace
